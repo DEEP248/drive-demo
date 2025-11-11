@@ -1,0 +1,52 @@
+<main class="p-6 h-screen w-screen flex flex-col items-center justify-center gap-6">
+  <h1 class="text-3xl font-semibold text-gray-100 mb-4">Upload Your File</h1>
+
+  <% if (fileUrl) { %>
+    <div class="mb-4">
+      <p class="text-green-400 font-medium mb-2">File uploaded successfully!</p>
+      <img src="<%= fileUrl %>" alt="Uploaded" class="w-60 rounded-lg shadow-lg border border-gray-700" />
+    </div>
+  <% } %>
+
+  <button onclick="showPopup()"
+    class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-blue-900/30 flex items-center gap-2">
+    <i class="ri-upload-2-line text-lg"></i> Upload a File
+  </button>
+
+  <!-- Popup -->
+  <div
+    class="pop hidden fixed top-0 left-0 h-screen w-screen backdrop-blur-sm bg-black/80 flex items-center justify-center z-50">
+    <div
+      class="relative bg-gray-900 border border-gray-700 p-8 rounded-2xl shadow-2xl w-[28rem] animate-[fadeIn_0.3s_ease-out]">
+
+      <form action="/upload" method="post" enctype="multipart/form-data" class="flex flex-col gap-5">
+        <div class="flex items-center justify-center">
+          <label for="dropzone-file"
+            class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-all duration-300 shadow-inner">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg class="w-10 h-10 mb-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 20 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+              </svg>
+              <p class="mb-2 text-sm text-gray-300"><span class="font-semibold">Click to upload</span> or drag &
+                drop</p>
+              <p class="text-xs text-gray-400">JPG, JPEG, PNG only</p>
+            </div>
+            <input id="dropzone-file" type="file" name="file" class="hidden" />
+          </label>
+        </div>
+
+        <button
+          class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition text-white font-semibold py-2.5 px-6 rounded-lg shadow-md">
+          <i class="ri-send-plane-fill mr-1"></i>Upload File
+        </button>
+      </form>
+
+      <button onclick="hidePopup()"
+        class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white rounded-full p-2 transition">
+        <i class="ri-close-line text-xl"></i>
+      </button>
+    </div>
+  </div>
+</main>
